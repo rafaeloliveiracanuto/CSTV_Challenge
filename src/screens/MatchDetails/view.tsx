@@ -43,6 +43,7 @@ const data: PlayerCardRow[] = [
 ];
 
 const MatchDetailsView: FC<MatchDetailsViewProps> = ({handleNavigate}) => {
+
   const renderPlayerCards = ({item}: {item: PlayerCardRow}) => {
     return (
       <View style={styles.playersContainer}>
@@ -64,12 +65,14 @@ const MatchDetailsView: FC<MatchDetailsViewProps> = ({handleNavigate}) => {
 
   return (
     <View style={styles.container}>
-      <Match
-        firstTeamName={'Time 1'}
-        firstTeamImage={'https://www.escudosfc.com.br/images/celtic.png'}
-        secondTeamName={'Time 2'}
-        secondTeamImage={'https://www.escudosfc.com.br/images/psg.png'}
-      />
+      <View style={{marginTop: 20}}>
+        <Match
+          firstTeamName={'Time 1'}
+          firstTeamImage={'https://www.escudosfc.com.br/images/celtic.png'}
+          secondTeamName={'Time 2'}
+          secondTeamImage={'https://www.escudosfc.com.br/images/psg.png'}
+        />
+      </View>
       <Text style={styles.dateText}>Hoje, 21:00</Text>
       <FlatList
         data={data}
