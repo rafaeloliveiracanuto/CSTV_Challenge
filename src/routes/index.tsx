@@ -1,26 +1,34 @@
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import * as React from 'react';
-import { View } from 'react-native';
+import {TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import Home from '../screens/Home';
 import MatchDetails from '../screens/MatchDetails';
-
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: 'blue',
-    background: '#161621',
-    text: '#FFFFFF',
-  },
-};
+import {MatchDetailsProps} from '../screens/MatchDetails/Models';
+import {GoBackIconProps} from './Models';
+import {headerTheme, iconStyle, theme} from './styles';
 
 const Stack = createStackNavigator();
 
+const GoBackIcon: React.FC<GoBackIconProps> = ({onPress}) => (
+  <TouchableOpacity style={iconStyle} onPress={onPress}>
+    <Icon name="arrow-back" size={24} color="white" />
+  </TouchableOpacity>
+);
+
 const RouteStacks = (
-  <Stack.Navigator initialRouteName="Home">
-    <Stack.Screen name="Home" component={Home} />
-    <Stack.Screen name="MatchDetails" component={MatchDetails} />
+  <Stack.Navigator initialRouteName='Home'>
+    <Stack.Screen name='Home' component={Home} options={{...headerTheme}} />
+    <Stack.Screen
+      name='MatchDetails'
+      component={MatchDetails}
+      options={({navigation}: MatchDetailsProps) => ({
+        headerLeft: () => <GoBackIcon onPress={() => navigation.goBack()} />,
+        title: 'League + serie',
+        ...headerTheme,
+      })}
+    />
   </Stack.Navigator>
 );
 

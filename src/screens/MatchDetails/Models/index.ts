@@ -17,4 +17,4 @@ export interface MatchDetailsViewProps {
   handleNavigate: () => void;
 }
 
-export interface MatchDetailsAdressParams {}
+export interface MatchDetailsParams {}

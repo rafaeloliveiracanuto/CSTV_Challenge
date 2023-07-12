@@ -14,4 +14,4 @@ export interface HomeViewProps {
   handleNavigate: () => void;
 }
 
-export interface HomeAdressParams {}
+export interface HomeParams {}
