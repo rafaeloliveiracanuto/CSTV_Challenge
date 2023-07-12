@@ -19,7 +19,11 @@ const GoBackIcon: React.FC<GoBackIconProps> = ({onPress}) => (
 
 const RouteStacks = (
   <Stack.Navigator initialRouteName='Home'>
-    <Stack.Screen name='Home' component={Home} options={{...headerTheme}} />
+    <Stack.Screen
+      name="Home"
+      component={Home}
+      options={{...headerTheme, title: ''}}
+    />
     <Stack.Screen
       name='MatchDetails'
       component={MatchDetails}
