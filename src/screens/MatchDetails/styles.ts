@@ -5,16 +5,19 @@ const width = Dimensions.get('window').width;
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: width * 0.05,
+    //alignItems: 'center',
   },
-  scrollViewContent: {
-    flexGrow: 1,
+  playersContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 15,
   },
-  title: {
+  dateText: {
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 12,
     color: 'white',
-    alignSelf: 'flex-start',
+    marginTop: 20,
     marginBottom: 20,
+    textAlign: 'center',
   },
 });

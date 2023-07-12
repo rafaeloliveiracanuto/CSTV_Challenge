@@ -31,13 +31,16 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   dateContainer: {
-    width: 40,
+    paddingHorizontal: 10,
     height: 30,
-    backgroundColor: '#F42A35',
+    backgroundColor: 'grey',
     borderBottomLeftRadius: 16,
     borderTopRightRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  liveContainer: {
+    backgroundColor: '#F42A35',
   },
   center: {
     flex: 4,

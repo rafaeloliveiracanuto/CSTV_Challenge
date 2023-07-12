@@ -9,6 +9,12 @@ export interface HomeProps {
   navigation: HomeNavigationProp;
   route: HomeRouteProp;
 }
+export type MatchCardItem = {
+  id: string;
+  leagueImage: string;
+  leagueName: string;
+  serieName: string;
+};
 
 export interface HomeViewProps {
   handleNavigate: () => void;

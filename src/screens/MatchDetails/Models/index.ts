@@ -13,6 +13,18 @@ export interface MatchDetailsProps {
   route: MatchDetailsRouteProp;
 }
 
+export type PlayerCardRow = {
+  playerImage: string;
+  playerName: string;
+  playerNickname: string;
+  isLeft: boolean;
+  playerImage2: string;
+  playerName2: string;
+  playerNickname2: string;
+  isLeft2: boolean;
+  id: string;
+};
+
 export interface MatchDetailsViewProps {
   handleNavigate: () => void;
 }

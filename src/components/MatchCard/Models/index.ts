@@ -7,4 +7,5 @@ export interface MatchCardProps {
   secondTeamImage: string;
   secondTeamName: string;
   date: string;
+  onPress: () => void;
 }
