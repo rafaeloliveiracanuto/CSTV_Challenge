@@ -13,5 +13,6 @@ export const styles = StyleSheet.create({
     fontSize: 30,
     color: 'white',
     alignSelf: 'flex-start',
+    marginBottom: 20,
   },
 });

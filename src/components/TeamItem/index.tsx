@@ -5,8 +5,8 @@ import {styles} from './styles';
 
 const TeamItem: FC<TeamItemProps> = ({image, text}) => {
   return (
-    <View>
-      <Image style={styles.image} source={image} />
+    <View style={styles.container}>
+      <Image style={styles.image} source={{uri: image}} />
       <Text style={styles.text}>{text}</Text>
     </View>
   );
