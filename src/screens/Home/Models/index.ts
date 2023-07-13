@@ -18,6 +18,13 @@ export type MatchCardItem = {
 
 export interface HomeViewProps {
   handleNavigate: () => void;
+  matches: Object[];
+  isLoading: boolean;
+  isError: boolean;
+  error: string | undefined;
+  isFetching: boolean;
+  loadMoreMatches: () => void;
+  refetch: () => void;
 }
 
 export interface HomeParams {}

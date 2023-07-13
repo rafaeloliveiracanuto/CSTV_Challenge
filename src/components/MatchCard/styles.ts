@@ -64,5 +64,13 @@ export const styles = StyleSheet.create({
   bottomText: {
     fontSize: 10,
     color: 'white',
+    flexShrink: 2,
+  },
+  circle: {
+    width: 16,
+    height: 16,
+    borderRadius: 100,
+    backgroundColor: '#C4C4C4',
+    marginRight: 10,
   },
 });

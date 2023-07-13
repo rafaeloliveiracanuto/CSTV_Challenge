@@ -2,6 +2,9 @@ import React, {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
 
 import Routes from './src/routes';
+import {QueryClient, QueryClientProvider} from 'react-query';
+
+const client = new QueryClient();
 
 const App = () => {
   useEffect(() => {
@@ -9,9 +12,9 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <QueryClientProvider client={client}>
       <Routes />
-    </>
+    </QueryClientProvider>
   );
 };
 

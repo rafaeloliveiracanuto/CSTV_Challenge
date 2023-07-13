@@ -1,58 +1,91 @@
 import React, {FC} from 'react';
-import {Button, Text, View} from 'react-native';
-import {FlatList, ScrollView} from 'react-native-gesture-handler';
+import {ActivityIndicator, Button, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, RefreshControl} from 'react-native-gesture-handler';
 import MatchCard from '../../components/MatchCard';
 import {HomeViewProps, MatchCardItem} from './Models';
 import {styles} from './styles';
+import Matches from '../../services/matches';
 
-const data: MatchCardItem[] = [
-  {
-    id: '1',
-    leagueImage:
-      'https://e7.pngegg.com/pngimages/475/754/png-clipart-logo-uefa-champions-league-brand-line-font-line-text-logo.png',
-    leagueName: 'Champions League',
-    serieName: 'Serie A',
-  },
-  {
-    id: '2',
-    leagueImage:
-      'https://e7.pngegg.com/pngimages/475/754/png-clipart-logo-uefa-champions-league-brand-line-font-line-text-logo.png',
-    leagueName: 'Champions League',
-    serieName: 'Serie B',
-  },
-  {
-    id: '3',
-    leagueImage:
-      'https://e7.pngegg.com/pngimages/475/754/png-clipart-logo-uefa-champions-league-brand-line-font-line-text-logo.png',
-    leagueName: 'Champions League',
-    serieName: 'Serie C',
-  },
-];
 
-const HomeView: FC<HomeViewProps> = ({handleNavigate}) => {
-  const renderMatchCards = ({item}: {item: MatchCardItem}) => {
+const HomeView: FC<HomeViewProps> = ({
+  handleNavigate,
+  matches,
+  isLoading,
+  isFetching,
+  isError,
+  error,
+  refetch,
+  isRefetching,
+  hasNextPage,
+  loadMoreMatches,
+  handleNextPage,
+}) => {
+  const renderMatchCards = ({item}: {item}) => {
+    const league = item.league;
+    const serie = item.serie;
+    const teams = item.opponents;
+
     return (
       <View style={{marginBottom: 20}}>
-         <MatchCard
-          leagueImage={item.leagueImage}
-          leagueName={item.leagueName}
-          serieName={item.serieName}
+        <MatchCard
+          leagueImage={league?.image_url}
+          leagueName={league?.name}
+          serieName={serie?.full_name}
+          firstTeamImage={teams[0]?.opponent.image_url}
+          firstTeamName={teams[0]?.opponent.name}
+          secondTeamImage={teams[1]?.opponent.image_url}
+          secondTeamName={teams[1]?.opponent.name}
+          date={item?.begin_at}
           onPress={handleNavigate}
         />
       </View>
     );
   };
 
+  if (isError) {
+    return (
+      <View style={styles.container}>
+        <Text>Error: {error?.message}</Text>
+      </View>
+    );
+  }
+
+  if (isLoading && matches?.length < 10) {
+    return (
+      <View style={styles.loading}>
+        <ActivityIndicator size={'large'} />
+      </View>
+    );
+  }
+
+  const handleEndReached = () => {
+    if (hasNextPage) handleNextPage();
+  };
+
+  const showBottomIndicator = isLoading && matches?.length >= 10 && hasNextPage;
+
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <Text style={styles.title}>Partidas</Text>
-        <FlatList
-          data={data}
-          keyExtractor={item => item.id}
-          renderItem={renderMatchCards}
-        />
-      </ScrollView>
+      <Text style={styles.title}>Partidas</Text>
+      <FlatList
+        data={matches}
+        //keyExtractor={item => item?.id}
+        renderItem={renderMatchCards}
+        refreshControl={
+          <RefreshControl
+            refreshing={isLoading}
+            onRefresh={refetch}
+            colors={['grey']}
+            tintColor={'grey'}
+          />
+        }
+        onEndReached={handleEndReached}
+      />
+      {showBottomIndicator && (
+        <View style={[styles.loading, styles.indicatorContainer]}>
+          <ActivityIndicator size={'large'} />
+        </View>
+      )}
     </View>
   );
 };

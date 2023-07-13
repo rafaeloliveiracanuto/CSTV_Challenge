@@ -17,4 +17,32 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginBottom: 20,
   },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 40,
+    borderWidth: 1,
+    borderColor: '#161621',
+    padding: 10,
+    borderRadius: 16,
+    backgroundColor: '#272639',
+  },
+  buttonText: {
+    fontWeight: 'bold',
+    color: 'white',
+    fontSize: 16,
+  },
+  loading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  indicatorContainer: {
+    position: 'absolute',
+    bottom: 0,
+    marginVertical: 30,
+    left: 0,
+    right: 0,
+  },
 });

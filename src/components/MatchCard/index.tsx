@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Image, Text, View} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import Match from '../Match';
 import TeamItem from '../TeamItem';
 import {MatchCardProps} from './Models';
@@ -23,24 +23,32 @@ const MatchCard: FC<MatchCardProps> = ({
         <View style={styles.top}>
           <View style={styles.topContent}>
             <View style={[styles.dateContainer, styles.liveContainer]}>
-              <Text style={styles.dateText}>Agora</Text>
+              <Text style={styles.dateText}>{date}</Text>
             </View>
           </View>
         </View>
         <View style={styles.center}>
           <Match
-            firstTeamName={'Time 1'}
-            firstTeamImage={'https://www.escudosfc.com.br/images/celtic.png'}
-            secondTeamName={'Time 2'}
-            secondTeamImage={'https://www.escudosfc.com.br/images/psg.png'}
+            firstTeamName={firstTeamName}
+            firstTeamImage={firstTeamImage}
+            secondTeamName={secondTeamName}
+            secondTeamImage={secondTeamImage}
           />
         </View>
         <View style={styles.bottom}>
           <View style={styles.line} />
           <View style={styles.bottomContent}>
-            <Image style={styles.bottomImage} source={{uri: leagueImage}} />
+            {leagueImage ? (
+              <Image style={styles.bottomImage} source={{uri: leagueImage}} />
+            ) : (
+              <View style={styles.circle} />
+            )}
             <Text
-              style={styles.bottomText}>{`${leagueName} ${serieName}`}</Text>
+              style={styles.bottomText}
+              numberOfLines={1}
+              ellipsizeMode="tail">
+              {`${leagueName} ${serieName}`}
+            </Text>
           </View>
         </View>
       </View>
