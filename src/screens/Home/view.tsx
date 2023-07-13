@@ -50,7 +50,7 @@ const HomeView: FC<HomeViewProps> = ({
     );
   }
 
-  if (isLoading && matches?.length < 10) {
+  if (isLoading && !matches) {
     return (
       <View style={styles.loading}>
         <ActivityIndicator size={'large'} />
@@ -73,7 +73,7 @@ const HomeView: FC<HomeViewProps> = ({
         renderItem={renderMatchCards}
         refreshControl={
           <RefreshControl
-            refreshing={isLoading}
+            refreshing={isRefetching}
             onRefresh={refetch}
             colors={['grey']}
             tintColor={'grey'}
