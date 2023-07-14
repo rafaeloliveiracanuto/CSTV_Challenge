@@ -14,7 +14,7 @@ const HomeView: FC<HomeViewProps> = ({
   isFetching,
   isError,
   error,
-  refetch,
+  refresh,
   isRefetching,
   hasNextPage,
   loadMoreMatches,
@@ -81,12 +81,12 @@ const HomeView: FC<HomeViewProps> = ({
       <Text style={styles.title}>Partidas</Text>
       <FlatList
         data={matches}
-        keyExtractor={item => item?.id}
+        keyExtractor={(item, index) => index}
         renderItem={renderMatchCards}
         refreshControl={
           <RefreshControl
             refreshing={isRefetching}
-            onRefresh={refetch}
+            onRefresh={refresh}
             colors={['grey']}
             tintColor={'grey'}
           />
