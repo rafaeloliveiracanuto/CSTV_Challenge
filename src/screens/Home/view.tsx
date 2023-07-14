@@ -25,6 +25,18 @@ const HomeView: FC<HomeViewProps> = ({
     const serie = item.serie;
     const teams = item.opponents;
 
+    if (!teams[0]?.opponent?.id || !teams[1]?.opponent?.id) return null;
+
+    const goToMatchDetails = () => {
+      const params = {
+        title: league?.name + serie?.full_name,
+        dateText: item?.begin_at,
+        firstTeamID: teams[0]?.opponent?.id,
+        secondTeamID: teams[1]?.opponent?.id,
+      };
+      handleNavigate(params);
+    };
+
     return (
       <View style={{marginBottom: 20}}>
         <MatchCard
@@ -36,7 +48,7 @@ const HomeView: FC<HomeViewProps> = ({
           secondTeamImage={teams[1]?.opponent.image_url}
           secondTeamName={teams[1]?.opponent.name}
           date={item?.begin_at}
-          onPress={handleNavigate}
+          onPress={goToMatchDetails}
         />
       </View>
     );
@@ -44,8 +56,8 @@ const HomeView: FC<HomeViewProps> = ({
 
   if (isError) {
     return (
-      <View style={styles.container}>
-        <Text>Error: {error?.message}</Text>
+      <View style={styles.loading}>
+        <Text style={styles.errorText}>Error: {error?.message}</Text>
       </View>
     );
   }
@@ -69,7 +81,7 @@ const HomeView: FC<HomeViewProps> = ({
       <Text style={styles.title}>Partidas</Text>
       <FlatList
         data={matches}
-        //keyExtractor={item => item?.id}
+        keyExtractor={item => item?.id}
         renderItem={renderMatchCards}
         refreshControl={
           <RefreshControl

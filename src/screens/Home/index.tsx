@@ -37,8 +37,8 @@ const Home: FC<HomeProps> = ({route, navigation}) => {
     setCurrentPage(prevPage => prevPage + 1);
   };
 
-  const handleNavigate = () => {
-    navigation.navigate('MatchDetails');
+  const handleNavigate = params => {
+    navigation.navigate('MatchDetails', {...params});
   };
 
   return (

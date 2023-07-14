@@ -20,4 +20,15 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
   },
+  errorText: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: 'white',
+    textAlign: 'center',
+  },
+  loading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

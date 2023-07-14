@@ -1,6 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
-const height = Dimensions.get('window').height;
+import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
@@ -37,13 +35,13 @@ export const styles = StyleSheet.create({
     position: 'absolute',
   },
   imageLeft: {
-    top: 0,
+    top: -2,
     right: 0,
     paddingRight: 10,
     paddingLeft: 20,
   },
   imageRight: {
-    top: 0,
+    top: -2,
     left: 0,
     paddingRight: 20,
     paddingLeft: 10,
@@ -51,5 +49,7 @@ export const styles = StyleSheet.create({
   image: {
     width: 40,
     height: 40,
+    borderRadius: 8,
+    backgroundColor: '#C4C4C4',
   },
 });

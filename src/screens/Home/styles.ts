@@ -38,6 +38,12 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  errorText: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: 'white',
+    textAlign: 'center',
+  },
   indicatorContainer: {
     position: 'absolute',
     bottom: 0,

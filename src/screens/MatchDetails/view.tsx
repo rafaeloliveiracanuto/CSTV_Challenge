@@ -1,81 +1,83 @@
 import React, {FC} from 'react';
-import {Text, View} from 'react-native';
+import {ActivityIndicator, Text, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import Match from '../../components/Match';
 import PlayerCard from '../../components/PlayerCard';
 import {MatchDetailsViewProps, PlayerCardRow} from './Models';
 import {styles} from './styles';
 
-const data: PlayerCardRow[] = [
-  {
-    id: '1',
-    playerImage: 'https://www.escudosfc.com.br/images/celtic.png',
-    playerName: 'Player 1',
-    playerNickname: 'Nickname 1',
-    isLeft: true,
-    playerImage2: 'https://www.escudosfc.com.br/images/celtic.png',
-    playerName2: 'Player 2',
-    playerNickname2: 'Nickname 2',
-    isLeft2: false,
-  },
-  {
-    id: '2',
-    playerImage: 'https://www.escudosfc.com.br/images/celtic.png',
-    playerName: 'Player 3',
-    playerNickname: 'Nickname 3',
-    isLeft: true,
-    playerImage2: 'https://www.escudosfc.com.br/images/celtic.png',
-    playerName2: 'Player 4',
-    playerNickname2: 'Nickname 4',
-    isLeft2: false,
-  },
-  {
-    id: '3',
-    playerImage: 'https://www.escudosfc.com.br/images/celtic.png',
-    playerName: 'Player 5',
-    playerNickname: 'Nickname 5',
-    isLeft: true,
-    playerImage2: 'https://www.escudosfc.com.br/images/celtic.png',
-    playerName2: 'Player 6',
-    playerNickname2: 'Nickname 6',
-    isLeft2: false,
-  },
-];
+const MatchDetailsView: FC<MatchDetailsViewProps> = ({
+  teams,
+  players,
+  dateText,
+  isLoading,
+  isError,
+  errors,
+  handleNavigate
+}) => {
+  const firstTeam = teams[0];
+  const secondTeam = teams[1];
 
-const MatchDetailsView: FC<MatchDetailsViewProps> = ({handleNavigate}) => {
+  console.log({players})
 
   const renderPlayerCards = ({item}: {item: PlayerCardRow}) => {
+    const playerRequirements =
+      item.playerNickname && item.playerName !== 'Nome Jogador';
+    const player2Requirements =
+      item.playerNickname2 && item.playerName2 !== 'Nome Jogador';
+
     return (
       <View style={styles.playersContainer}>
-        <PlayerCard
-          playerImage={item.playerImage}
-          playerName={item.playerName}
-          playerNickname={item.playerNickname}
-          isLeft={item.isLeft}
-        />
-        <PlayerCard
-          playerImage={item.playerImage2}
-          playerName={item.playerName2}
-          playerNickname={item.playerNickname2}
-          isLeft={item.isLeft2}
-        />
+        { playerRequirements ?
+          <PlayerCard
+            playerImage={item.playerImage}
+            playerName={item.playerName}
+            playerNickname={item.playerNickname}
+            isLeft={item.isLeft}
+          /> : <View style={{width: '48%'}}></View>
+        }
+        { player2Requirements &&
+          <PlayerCard
+            playerImage={item.playerImage2}
+            playerName={item.playerName2}
+            playerNickname={item.playerNickname2}
+            isLeft={item.isLeft2}
+          />
+        }
       </View>
     );
   };
+
+  if (isError) {
+    const error = errors.find(err => err?.message);
+    return (
+      <View style={styles.loading}>
+        <Text style={styles.errorText}>Error: {error?.message}</Text>
+      </View>
+    );
+  }
+
+  if (isLoading && !players?.length) {
+    return (
+      <View style={styles.loading}>
+        <ActivityIndicator size={'large'} />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
       <View style={{marginTop: 20}}>
         <Match
-          firstTeamName={'Time 1'}
-          firstTeamImage={'https://www.escudosfc.com.br/images/celtic.png'}
-          secondTeamName={'Time 2'}
-          secondTeamImage={'https://www.escudosfc.com.br/images/psg.png'}
+          firstTeamName={firstTeam?.name}
+          firstTeamImage={firstTeam?.image_url}
+          secondTeamName={secondTeam?.name}
+          secondTeamImage={secondTeam?.image_url}
         />
       </View>
-      <Text style={styles.dateText}>Hoje, 21:00</Text>
+      <Text style={styles.dateText}>{dateText}</Text>
       <FlatList
-        data={data}
+        data={players}
         keyExtractor={item => item.id}
         renderItem={renderPlayerCards}
       />
