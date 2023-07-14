@@ -18,13 +18,13 @@ const MatchDetailsView: FC<MatchDetailsViewProps> = ({
   const firstTeam = teams[0];
   const secondTeam = teams[1];
 
-  console.log({players})
-
   const renderPlayerCards = ({item}: {item: PlayerCardRow}) => {
     const playerRequirements =
-      item.playerNickname && item.playerName !== 'Nome Jogador';
+      (item.playerNickname || item.playerName !== 'Nome Jogador') &&
+      item.playerID;
     const player2Requirements =
-      item.playerNickname2 && item.playerName2 !== 'Nome Jogador';
+      (item.playerNickname2 || item.playerName2 !== 'Nome Jogador') &&
+      item.player2ID;
 
     return (
       <View style={styles.playersContainer}>

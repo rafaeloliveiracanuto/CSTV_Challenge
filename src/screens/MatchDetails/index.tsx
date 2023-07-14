@@ -47,13 +47,15 @@ const MatchDetails: FC<MatchDetailsProps> = ({route, navigation}) => {
       playerName: `${data?.players[index]?.first_name ?? 'Nome'} ${
         data?.players[index]?.last_name ?? 'Jogador'
       }`,
-      playerNickname: data2?.players[index]?.name,
+      playerNickname: data?.players[index]?.name,
+      playerID: data?.players[index]?.id,
       isLeft: true,
       playerImage2: data2?.players[index]?.image_url,
       playerName2: `${data2?.players[index]?.first_name ?? 'Nome'} ${
         data2?.players[index]?.last_name ?? 'Jogador'
       }`,
       playerNickname2: data2?.players[index]?.name,
+      player2ID: data2?.players[index]?.id,
       isLeft2: false,
     }));
 
