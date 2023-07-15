@@ -1,17 +1,15 @@
-import moment from 'moment';
+import moment, {Moment} from 'moment';
 
 export const formatDate = (date: string) => {
   const newDate = moment(date);
   const now = moment();
-  const diffHours = newDate.diff(now, 'hours');
+  const diffDays = newDate.diff(now, 'days');
   const abbreviatedDays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
   let formattedDate = '';
 
-  if (diffHours <= 24 && diffHours >= 0) {
+  if (isSameDayAndMonth(newDate, now)) {
     formattedDate = 'Hoje, ' + newDate.format('HH:mm');
   } else {
-    const diffDays = newDate.diff(now, 'days');
-
     if (diffDays < 7) {
       formattedDate = newDate.format(
         `[${abbreviatedDays[newDate.day()]}], HH:mm`,
@@ -21,6 +19,10 @@ export const formatDate = (date: string) => {
     }
   }
   return formattedDate;
+};
+
+const isSameDayAndMonth = (date1: Moment, date2: Moment): boolean => {
+  return date1.isSame(date2, 'day') && date1.isSame(date2, 'month');
 };
 
 export const extractTotalPagesFromLinkHeader = (linkHeader) => {

@@ -61,7 +61,7 @@ const Home: FC<HomeProps> = ({navigation}) => {
     <HomeView
       matches={Matches.sort(matches)}
       isLoading={isLoading}
-      isRefetching={isRefetching}
+      isRefreshing={isRefetching}
       isError={isError}
       error={error}
       refresh={refresh}
