@@ -1,6 +1,11 @@
 export type RootStackParamList = {
   Home: undefined;
-  MatchDetails: {itemId: string};
+  MatchDetails: {
+    title: string;
+    dateText: string;
+    firstTeamID: number;
+    secondTeamID: number;
+  };
 };
 
 export type GoBackIconProps = {

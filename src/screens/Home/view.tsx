@@ -1,36 +1,39 @@
 import React, {FC} from 'react';
-import {ActivityIndicator, Button, Text, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, Text, View} from 'react-native';
 import {FlatList, RefreshControl} from 'react-native-gesture-handler';
 import MatchCard from '../../components/MatchCard';
-import {HomeViewProps, MatchCardItem} from './Models';
+import {HomeViewProps} from './Models';
 import {styles} from './styles';
-import Matches from '../../services/matches';
-
+import {formatDate} from '../../settings/functions';
+import {Match} from '../../services/Matches/Models';
+import {MatchDetailsParams} from '../MatchDetails/Models';
 
 const HomeView: FC<HomeViewProps> = ({
   handleNavigate,
   matches,
   isLoading,
-  isFetching,
   isError,
   error,
   refresh,
-  isRefetching,
+  isRefreshing,
   hasNextPage,
-  loadMoreMatches,
   handleNextPage,
 }) => {
-  const renderMatchCards = ({item}: {item}) => {
+  const renderMatchCards = ({item}: {item: Match}): JSX.Element | null => {
     const league = item.league;
     const serie = item.serie;
     const teams = item.opponents;
 
     if (!teams[0]?.opponent?.id || !teams[1]?.opponent?.id) return null;
+    const dateText =
+      item?.status === 'running'
+        ? 'AGORA'
+        : formatDate(item?.begin_at ?? item?.scheduled_at);
 
     const goToMatchDetails = () => {
-      const params = {
+      const params: MatchDetailsParams = {
         title: league?.name + serie?.full_name,
-        dateText: item?.begin_at,
+        dateText,
         firstTeamID: teams[0]?.opponent?.id,
         secondTeamID: teams[1]?.opponent?.id,
       };
@@ -38,7 +41,7 @@ const HomeView: FC<HomeViewProps> = ({
     };
 
     return (
-      <View style={{marginBottom: 20}}>
+      <View style={styles.cardContainer}>
         <MatchCard
           leagueImage={league?.image_url}
           leagueName={league?.name}
@@ -47,7 +50,7 @@ const HomeView: FC<HomeViewProps> = ({
           firstTeamName={teams[0]?.opponent.name}
           secondTeamImage={teams[1]?.opponent.image_url}
           secondTeamName={teams[1]?.opponent.name}
-          date={item?.begin_at}
+          date={dateText}
           onPress={goToMatchDetails}
         />
       </View>
@@ -81,11 +84,11 @@ const HomeView: FC<HomeViewProps> = ({
       <Text style={styles.title}>Partidas</Text>
       <FlatList
         data={matches}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={renderMatchCards}
         refreshControl={
           <RefreshControl
-            refreshing={isRefetching}
+            refreshing={isRefreshing}
             onRefresh={refresh}
             colors={['grey']}
             tintColor={'grey'}

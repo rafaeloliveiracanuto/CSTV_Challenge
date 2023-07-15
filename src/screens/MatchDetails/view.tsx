@@ -13,7 +13,6 @@ const MatchDetailsView: FC<MatchDetailsViewProps> = ({
   isLoading,
   isError,
   errors,
-  handleNavigate
 }) => {
   const firstTeam = teams[0];
   const secondTeam = teams[1];
@@ -34,7 +33,7 @@ const MatchDetailsView: FC<MatchDetailsViewProps> = ({
             playerName={item.playerName}
             playerNickname={item.playerNickname}
             isLeft={item.isLeft}
-          /> : <View style={{width: '48%'}}></View>
+          /> : <View style={styles.cardWidth}></View>
         }
         { player2Requirements &&
           <PlayerCard
@@ -67,7 +66,7 @@ const MatchDetailsView: FC<MatchDetailsViewProps> = ({
 
   return (
     <View style={styles.container}>
-      <View style={{marginTop: 20}}>
+      <View style={styles.matchContainer}>
         <Match
           firstTeamName={firstTeam?.name}
           firstTeamImage={firstTeam?.image_url}
@@ -78,7 +77,7 @@ const MatchDetailsView: FC<MatchDetailsViewProps> = ({
       <Text style={styles.dateText}>{dateText}</Text>
       <FlatList
         data={players}
-        keyExtractor={item => item.id}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={renderPlayerCards}
       />
     </View>

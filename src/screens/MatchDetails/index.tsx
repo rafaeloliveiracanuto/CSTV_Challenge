@@ -1,18 +1,18 @@
 import React, {FC, useEffect, useState} from 'react';
-import {MatchDetailsProps} from './Models';
+import {MatchDetailsProps, PlayerCardRow} from './Models';
 import MatchDetailsView from './view';
 import {useQuery, useQueryClient} from 'react-query';
-import Teams from '../../services/teams';
-import { useNavigation } from '@react-navigation/native';
+import Teams from '../../services/Teams/teams';
+import {Team} from '../../services/Teams/Models';
 
 const MatchDetails: FC<MatchDetailsProps> = ({route, navigation}) => {
   const {title, dateText, firstTeamID, secondTeamID} = route.params;
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState<PlayerCardRow[]>();
   const queryClient = useQueryClient();
 
-  const {data, isLoading, isError, error} = useQuery(
+  const {data, isLoading, isError, error} = useQuery<Team>(
     'teams',
-    async () => await Teams.fetchByID(firstTeamID),
+    async (): Promise<Team> => await Teams.fetchByID(firstTeamID),
   );
 
   const {
@@ -41,7 +41,7 @@ const MatchDetails: FC<MatchDetailsProps> = ({route, navigation}) => {
         ? data?.players
         : data2?.players;
 
-    const playersList = greaterList?.map((player, index) => ({
+    const playersList: PlayerCardRow[] = greaterList?.map((player, index) => ({
       id: `${index + 1}`,
       playerImage: data?.players[index]?.image_url,
       playerName: `${data?.players[index]?.first_name ?? 'Nome'} ${
@@ -62,12 +62,6 @@ const MatchDetails: FC<MatchDetailsProps> = ({route, navigation}) => {
     setPlayers(playersList);
   }, [isLoading, isLoading2]);
 
-  console.log({players})
-
-  const handleNavigate = () => {
-    navigation.navigate('Home');
-  };
-
   return (
     <MatchDetailsView
       teams={[data, data2]}
@@ -76,7 +70,6 @@ const MatchDetails: FC<MatchDetailsProps> = ({route, navigation}) => {
       isLoading={isLoading && isLoading2}
       isError={isError && isError2}
       errors={[error, error2]}
-      handleNavigate={handleNavigate}
     />
   );
 };

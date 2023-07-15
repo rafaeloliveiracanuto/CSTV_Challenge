@@ -1,6 +1,6 @@
 export interface PlayerCardProps {
-  playerImage: string;
-  playerName: string;
+  playerImage: string | undefined;
+  playerName: string | undefined;
   playerNickname: string;
   isLeft: boolean;
 }

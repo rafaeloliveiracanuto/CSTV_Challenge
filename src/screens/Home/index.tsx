@@ -1,19 +1,23 @@
 import React, {FC, useEffect, useState} from 'react';
 import {HomeProps} from './Models';
 import HomeView from './view';
-import Matches from '../../services/matches';
+import Matches from '../../services/Matches/matches';
 import {useQuery} from 'react-query';
+import {MatchDetailsParams} from '../MatchDetails/Models';
+import {Match} from '../../services/Matches/Models';
 
-const Home: FC<HomeProps> = ({route, navigation}) => {
+const Home: FC<HomeProps> = ({navigation}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [hasNextPage, setHasNextPage] = useState(true);
-  const {data, isLoading, isError, error, refetch, isRefetching} = useQuery(
+  const {data, isLoading, isError, error, refetch, isRefetching} = useQuery<
+    Match[]
+  >(
     ['matches', currentPage],
-    async () => await Matches.fetch(currentPage),
+    async (): Promise<Match[]> => await Matches.fetch(currentPage),
   );
 
-  const [matches, setMatches] = useState(data);
+  const [matches, setMatches] = useState<Match[]>(data ?? []);
 
   useEffect(() => {
     if (!matches && data?.length) {
@@ -49,16 +53,13 @@ const Home: FC<HomeProps> = ({route, navigation}) => {
     await refetch();
   };
 
-  console.log({isRefetching})
-  console.log({currentPage})
-
-  const handleNavigate = params => {
+  const handleNavigate = (params: MatchDetailsParams) => {
     navigation.navigate('MatchDetails', {...params});
   };
 
   return (
     <HomeView
-      matches={matches}
+      matches={Matches.sort(matches)}
       isLoading={isLoading}
       isRefetching={isRefetching}
       isError={isError}

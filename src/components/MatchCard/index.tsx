@@ -2,7 +2,6 @@ import React, {FC} from 'react';
 import {Image, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Match from '../Match';
-import TeamItem from '../TeamItem';
 import {MatchCardProps} from './Models';
 import {styles} from './styles';
 
@@ -17,12 +16,16 @@ const MatchCard: FC<MatchCardProps> = ({
   date,
   onPress,
 }) => {
+  const dateStyles = [
+    styles.dateContainer,
+    date === 'AGORA' && styles.liveContainer,
+  ];
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.matchContainer}>
         <View style={styles.top}>
           <View style={styles.topContent}>
-            <View style={[styles.dateContainer, styles.liveContainer]}>
+            <View style={dateStyles}>
               <Text style={styles.dateText}>{date}</Text>
             </View>
           </View>

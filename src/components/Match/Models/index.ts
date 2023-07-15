@@ -1,6 +1,6 @@
 export interface MatchProps {
-  firstTeamImage: string;
+  firstTeamImage: string | null;
   firstTeamName: string;
-  secondTeamImage: string;
+  secondTeamImage: string | null;
   secondTeamName: string;
 }

@@ -1,10 +1,10 @@
 export interface MatchCardProps {
-  leagueImage: string;
+  leagueImage: string | null;
   leagueName: string;
   serieName: string;
-  firstTeamImage: string;
+  firstTeamImage: string | null;
   firstTeamName: string;
-  secondTeamImage: string;
+  secondTeamImage: string | null;
   secondTeamName: string;
   date: string;
   onPress: () => void;
