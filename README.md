@@ -61,7 +61,7 @@ To run the CSTV project on iOS or Android, follow the instructions below:
 
 ### Prerequisites
 
-- Node.js (version 14 or higher)
+- Node.js (version 16 or higher)
 - NPM (version 6 or higher)
 - Xcode (for iOS development)
 - Android Studio (for Android development)
