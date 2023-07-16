@@ -1,12 +1,31 @@
 # CSTV - CS:GO Match Viewer
 
-CSTV is a mobile app that displays CS:GO matches happening across several worldwide tournaments. It provides an easy way to stay up to date with the latest CS:GO matches, including match details such as team names, rosters, and match times. The app includes a pull-to-refresh feature for users to manually update the match data.
+CSTV is a mobile app that displays CS:GO matches happening across several worldwide tournaments. It provides an easy way to stay up to date with the latest CS:GO matches, including match details such as team names, rosters, and match times.
 
 
+## Video
 
-https://github.com/rafaeloliveiracanuto/CSTV_Challenge/assets/25021148/9517312a-3db6-4a93-ba6e-896e6f148c21
+https://github.com/rafaeloliveiracanuto/CSTV_Challenge/assets/25021148/a1595b1f-c1a1-476c-8b0f-fe5658a67412
+
+## Screenshots
+
+- Android
+
+<img width="293" alt="image" src="https://github.com/rafaeloliveiracanuto/CSTV_Challenge/assets/25021148/297122f6-db89-4240-b1f5-e384e4309ac2">
+
+<img width="293" alt="image" src="https://github.com/rafaeloliveiracanuto/CSTV_Challenge/assets/25021148/099d5657-0bc5-41a8-8e6c-a857055d7441">
+
+<img width="293" alt="image" src="https://github.com/rafaeloliveiracanuto/CSTV_Challenge/assets/25021148/b08135b0-fcf1-4593-8fff-21b1d02e5b16">
 
 
+- iOS
+
+
+<img width="388" alt="image" src="https://github.com/rafaeloliveiracanuto/CSTV_Challenge/assets/25021148/9d6b0cee-ade9-4e87-a00d-bbe3a4172735">
+
+<img width="388" alt="image" src="https://github.com/rafaeloliveiracanuto/CSTV_Challenge/assets/25021148/e057363a-1e54-40e4-bdb9-dfa60db03d60">
+
+<img width="388" alt="image" src="https://github.com/rafaeloliveiracanuto/CSTV_Challenge/assets/25021148/e98cee09-059d-4b7f-87fa-12edc1da1f80">
 
 ## Features
 
