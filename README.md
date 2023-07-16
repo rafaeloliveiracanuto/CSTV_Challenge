@@ -2,27 +2,38 @@
 
 CSTV is a mobile app that displays CS:GO matches happening across several worldwide tournaments. It provides an easy way to stay up to date with the latest CS:GO matches, including match details such as team names, rosters, and match times. The app includes a pull-to-refresh feature for users to manually update the match data.
 
+
+
+https://github.com/rafaeloliveiracanuto/CSTV_Challenge/assets/25021148/9517312a-3db6-4a93-ba6e-896e6f148c21
+
+
+
 ## Features
 
-- Displays CS:GO matches happening across multiple worldwide tournaments.
-- Shows match details, including team names, rosters, and match times.
-- Implements a pull-to-refresh feature to manually update the match data.
+- Splash screen displaying the app logo upon launch
+- Main screen showing a sorted list of matches with league, team names, date and time, and match status
+- Match detail screen with additional information about the selected match, including team rosters and player details
+- Modal showing player info
+- Pull-to-refresh functionality to reload the matches list
+- Dates displayed in the device's local time
+- Unit tests for critical components, functions and API requests
+- Cross-platform support (iOS and Android)
+- Pagination support for browsing through a large number of matches
+- Responsive UI design for different screen sizes
 
 ## Libraries Used
 
-- `@react-native-community/masked-view`: A library for using masked views in React Native.
-- `@react-navigation/native`: A navigation library for React Native apps.
-- `@react-navigation/stack`: A stack navigator for React Navigation.
-- `axios`: A library for making HTTP requests.
-- `react`: The core library for building React applications.
-- `react-native`: The framework for building mobile apps using React.
-- `react-native-gesture-handler`: A library for handling touch gestures in React Native apps.
-- `react-native-reanimated`: A library for building smooth animations in React Native.
-- `react-native-safe-area-context`: A library for handling safe area insets in React Native apps.
-- `react-native-screens`: A library that provides native navigation screen components for React Native apps.
-- `react-native-splash-screen`: A library for displaying a splash screen during app startup in React Native.
-- `react-native-vector-icons`: A library for using vector icons in React Native apps.
-- `react-query`: A library for managing and caching asynchronous data in React.
+- React Native: JavaScript framework for building native mobile apps
+- TypeScript: Typed superset of JavaScript for improved code quality and development experience
+- PandaScore API: Provides match data and details for CS:GO tournaments
+- React Navigation: Navigation library for handling screen transitions
+- Axios: HTTP client for making API requests
+- Moment.js: Library for handling date and time formatting
+- React Query: Library for data fetching and caching
+- React Native Vector Icons: Library for adding vector icons to the app
+- React Native Modal: Library for displaying modals in the app
+- React Native Country Picker Modal: Library for country picker functionality
+- Jest: JavaScript testing framework for unit tests
 
 ## Running the Project
 
