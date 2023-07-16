@@ -9,21 +9,31 @@ const PlayerCard: FC<PlayerCardProps> = ({
   playerNickname,
   isLeft,
 }) => {
-  const viewStyles = [styles.container, isLeft ? styles.left : styles.right];
-  const imageContainerStyles = [
-    styles.imageContainer,
-    isLeft ? styles.imageLeft : styles.imageRight,
-  ];
+  const viewStyles = {
+    ...styles.container,
+    ...(isLeft ? styles.left : styles.right),
+  };
+  const imageContainerStyles = {
+    ...styles.imageContainer,
+    ...(isLeft ? styles.imageLeft : styles.imageRight),
+  };
   const textStyle = isLeft ? styles.textLeft : styles.textRight;
   return (
-    <View style={viewStyles}>
-      <Text style={[styles.nickname, textStyle]}>{playerNickname}</Text>
-      <Text style={[styles.name, textStyle]}>{playerName}</Text>
-      <View style={imageContainerStyles}>
+    <View style={viewStyles} testID={'player-card-container'}>
+      <Text
+        style={{...styles.nickname, ...textStyle}}
+        testID={'player-card-nickname'}>
+        {playerNickname}
+      </Text>
+      <Text style={{...styles.name, ...textStyle}} testID={'player-card-name'}>
+        {playerName}
+      </Text>
+      <View style={imageContainerStyles} testID={'player-card-image-container'}>
         <Image
           source={{uri: playerImage}}
           style={styles.image}
-          resizeMode="cover"
+          testID={'player-image'}
+          resizeMode='cover'
         />
       </View>
     </View>

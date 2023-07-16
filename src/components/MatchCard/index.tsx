@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
-import {Image, Text, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {Image, Text, View, TouchableOpacity} from 'react-native';
 import Match from '../Match';
 import {MatchCardProps} from './Models';
 import {styles} from './styles';
@@ -21,11 +20,14 @@ const MatchCard: FC<MatchCardProps> = ({
     date === 'AGORA' && styles.liveContainer,
   ];
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.container}
+      testID={'match-card-container'}>
       <View style={styles.matchContainer}>
         <View style={styles.top}>
           <View style={styles.topContent}>
-            <View style={dateStyles}>
+            <View style={dateStyles} testID={'date-container'}>
               <Text style={styles.dateText}>{date}</Text>
             </View>
           </View>
@@ -42,14 +44,19 @@ const MatchCard: FC<MatchCardProps> = ({
           <View style={styles.line} />
           <View style={styles.bottomContent}>
             {leagueImage ? (
-              <Image style={styles.bottomImage} source={{uri: leagueImage}} />
+              <Image
+                style={styles.bottomImage}
+                source={{uri: leagueImage}}
+                testID={'league-image'}
+              />
             ) : (
-              <View style={styles.circle} />
+              <View style={styles.circle} testID={'circle-placeholder'} />
             )}
             <Text
               style={styles.bottomText}
               numberOfLines={1}
-              ellipsizeMode="tail">
+              ellipsizeMode="tail"
+              testID={'league-and-serie-text'}>
               {`${leagueName} ${serieName}`}
             </Text>
           </View>
