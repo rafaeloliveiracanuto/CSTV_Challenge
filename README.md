@@ -34,6 +34,7 @@ https://github.com/rafaeloliveiracanuto/CSTV_Challenge/assets/25021148/9517312a-
 - React Native Modal: Library for displaying modals in the app
 - React Native Country Picker Modal: Library for country picker functionality
 - Jest: JavaScript testing framework for unit tests
+- React Native Testing Library: Library for testing React Native components
 
 ## Running the Project
 
@@ -50,7 +51,14 @@ To run the CSTV project on iOS or Android, follow the instructions below:
 
 1. Clone the repository to your local machine.
 2. Open a terminal/command prompt and navigate to the project directory.
-3. Run `npm install` to install the project dependencies.
+3. Run `npm install` or `yarn install` to install the project dependencies.
+4. `cd ios && pod install` to install CocoaPods dependencies.
+
+### Running Unit Tests
+`yarn test`
+
+### Starting server
+`yarn start` or `npx react-native start`
 
 ### Running on iOS Simulator
 
