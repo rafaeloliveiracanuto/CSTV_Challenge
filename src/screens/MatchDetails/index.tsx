@@ -49,6 +49,8 @@ const MatchDetails: FC<MatchDetailsProps> = ({route, navigation}) => {
       }`,
       playerNickname: data?.players[index]?.name,
       playerID: data?.players[index]?.id,
+      playerAge: data?.players[index]?.age,
+      playerNationality: data?.players[index]?.nationality,
       isLeft: true,
       playerImage2: data2?.players[index]?.image_url,
       playerName2: `${data2?.players[index]?.first_name ?? 'Nome'} ${
@@ -56,6 +58,8 @@ const MatchDetails: FC<MatchDetailsProps> = ({route, navigation}) => {
       }`,
       playerNickname2: data2?.players[index]?.name,
       player2ID: data2?.players[index]?.id,
+      playerAge2: data2?.players[index]?.age,
+      playerNationality2: data2?.players[index]?.nationality,
       isLeft2: false,
     }));
 

@@ -1,7 +1,7 @@
 import Matches from '../matches';
 import api from '../../api';
 import {mockMatches, mockSortedData} from '../data';
-import moment = require('moment');
+import moment from 'moment';
 
 jest.mock('../../api');
 

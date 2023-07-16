@@ -1,5 +1,5 @@
 import moment from 'moment';
-import {extractTotalPagesFromLinkHeader} from '../../settings/functions';
+import {extractTotalPagesFromLinkHeader} from '../../utils/functions';
 import api from '../api';
 import {Match} from './Models';
 

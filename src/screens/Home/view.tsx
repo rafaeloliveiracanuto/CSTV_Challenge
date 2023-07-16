@@ -4,7 +4,7 @@ import {FlatList, RefreshControl} from 'react-native-gesture-handler';
 import MatchCard from '../../components/MatchCard';
 import {HomeViewProps} from './Models';
 import {styles} from './styles';
-import {formatDate} from '../../settings/functions';
+import {formatDate} from '../../utils/functions';
 import {Match} from '../../services/Matches/Models';
 import {MatchDetailsParams} from '../MatchDetails/Models';
 

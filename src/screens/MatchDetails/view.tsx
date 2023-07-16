@@ -1,5 +1,5 @@
-import React, {FC} from 'react';
-import {ActivityIndicator, Text, View} from 'react-native';
+import React, {FC, useState} from 'react';
+import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import Match from '../../components/Match';
 import PlayerCard from '../../components/PlayerCard';
@@ -32,6 +32,8 @@ const MatchDetailsView: FC<MatchDetailsViewProps> = ({
             playerImage={item.playerImage}
             playerName={item.playerName}
             playerNickname={item.playerNickname}
+            playerAge={item.playerAge}
+            playerNationality={item.playerNationality}
             isLeft={item.isLeft}
           /> : <View style={styles.cardWidth}></View>
         }
@@ -40,6 +42,8 @@ const MatchDetailsView: FC<MatchDetailsViewProps> = ({
             playerImage={item.playerImage2}
             playerName={item.playerName2}
             playerNickname={item.playerNickname2}
+            playerAge={item.playerAge2}
+            playerNationality={item.playerNationality2}
             isLeft={item.isLeft2}
           />
         }
