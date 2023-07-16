@@ -84,6 +84,19 @@ CSTV includes a pull-to-refresh feature that allows users to manually update the
 3. Swipe down on the screen and release to trigger the pull-to-refresh action.
 4. The app will initiate a refresh and update the match data with the latest information.
 
+## Pagination Feature
+CSTV supports pagination to handle a large number of matches efficiently. When viewing the matches list, you can load more matches by scrolling to the end of the list. Follow these steps to utilize the pagination feature:
+
+1. Launch the CSTV app on your mobile device or emulator.
+2. Navigate to the matches screen where the match data is displayed.
+3. Scroll down the list of matches until you reach the end.
+4. The app will automatically load the next page of matches and append them to the existing list.
+5. The newly fetched matches will be sorted and merged with the existing list to maintain the correct order based on their dates and times.
+6. Continue scrolling to load additional pages if available.
+7. If no more matches are available, the app will indicate the end of the list.
+
+The pagination feature allows for a seamless browsing experience, ensuring that you can explore and access a large number of matches while maintaining the correct chronological order of the matches.
+
 ## Contributing
 
 Contributions to CSTV are welcome! If you have any suggestions, bug reports, or feature requests, please submit them to the project repository.
