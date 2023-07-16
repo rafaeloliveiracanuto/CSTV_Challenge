@@ -1,4 +1,4 @@
-# CSTV - CS:GO Tournament Viewer
+# CSTV - CS:GO Match Viewer
 
 CSTV is a mobile app that displays CS:GO matches happening across several worldwide tournaments. It provides an easy way to stay up to date with the latest CS:GO matches, including match details such as team names, rosters, and match times. The app includes a pull-to-refresh feature for users to manually update the match data.
 
